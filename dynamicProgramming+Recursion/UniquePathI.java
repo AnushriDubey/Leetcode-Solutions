@@ -36,7 +36,7 @@ It's guaranteed that the answer will be less than or equal to 2 * 109.
 
 Description:
 
-
+No need for invalid index check because from column == 0 or row == 0 only possible way to reach (0,0) is by using single straight line.
 
 
 
