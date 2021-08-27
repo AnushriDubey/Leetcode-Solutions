@@ -36,19 +36,39 @@ It's guaranteed that the answer will be less than or equal to 2 * 109.
 
 Description:
 
-No need for invalid index check because from column == 0 or row == 0 only possible way to reach (0,0) is by using single straight line.
+No need for invalid index check because from column == 0 or row == 0 only possible way to reach (0,0) is by using single straight line then return 1 path possible
+for that case.
+
 
 
 
 */
 
 class Solution {
-    
-    public static int recPaths(int r, int c) {
+ 
+ //recursive solution 
+ 
+ public static int recPaths(int r, int c) {
         if(r==0 || c==0) return 1;
         return recPaths(r-1,c) + recPaths(r,c-1);
     }
     
+ /* 1st approach */
+   static int dp[][];
+    public static int dpPaths(int r, int c) {
+        if(r==dp.length-1 || c==dp[0].length-1) return 1;
+        if(dp[r][c]!=-1) return dp[r][c];
+        return dp[r][c] = dpPaths(r+1,c) + dpPaths(r,c+1);
+    }
+    
+    
+    public int uniquePaths(int m, int n) {
+        dp = new int[m][n];
+        for(int a[]: dp) Arrays.fill(a,-1);
+        return dpPaths(0, 0);
+    }
+    
+  /* 2nd approach */
     static int dp[][];
     public static int dpPaths(int r, int c) {
         if(r==0 || c==0) return 1;
@@ -60,4 +80,6 @@ class Solution {
         for(int a[]: dp) Arrays.fill(a,-1);
         return dpPaths(m-1, n-1);
     }
+ 
+ 
 }
