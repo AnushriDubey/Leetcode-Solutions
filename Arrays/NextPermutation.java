@@ -61,7 +61,7 @@ class Solution {
         }
         else {
             for(int i = minI+1;i<n;i++) {
-                if(nums[minI]<nums[i]) maxI = i;
+                if(nums[minI]<nums[i]) maxI = i; // consider the Right most value as that will be the least one from the concept of minIndex.
             }
             int t = nums[minI];
             nums[minI] = nums[maxI];
