@@ -47,7 +47,7 @@ class Solution {
                     sum -= nums[i];
                     i++;
                 }
-                //min = Math.min(min, j-i+1);
+                //min = Math.min(min, j-i+1);  // sum<target so no need here
             }
             j++;
         }
