@@ -46,29 +46,25 @@ inorder is guaranteed to be the inorder traversal of the tree.
  * }
  */
 class Solution {
-    static TreeNode root, curr;
-    public static TreeNode create(int []p, int in[], int il, int ir, int pl, int pr) {
-        if(il>ir || pl>pr) return null;
-        //System.out.println(il + " " + ir + " " + pl + " " + pr + " ");
-        int tmp = 0;
-        for(int i = il;i<=ir;i++) {
-            if(in[i] == p[pl]) {
+    
+    public TreeNode construct(int in[], int pre[], int is, int ie, int ps, int pe) {
+        if(is>ie || ps>pe) return null;
+        TreeNode curr = new TreeNode(pre[ps]);
+        int tmp = is;
+        for(int i=is;i<=ie;i++) {
+            if(pre[ps]==in[i]) {
                 tmp = i;
                 break;
             }
         }
-        TreeNode cur = new TreeNode(in[tmp]);
-        if(root == null) root = cur;
-        int len = tmp - il;
-        // System.out.println("left "+ len + " " + il + " " + (tmp -1) + " " + (pl+1) + " " + (pl+len) + " ");
-        // System.out.println("right "+ len + " " + (tmp+1) + " " + (ir) + " " + (pl+len+1) + " " + (pr) + " ");
-        cur.left = create(p, in, il, tmp-1, pl+1, pl+len);
-        cur.right = create(p, in, tmp+1, ir, pl+len+1, pr);
-        return cur;
+        int leftLen = tmp - is;
+        curr.left = construct(in, pre, is, tmp-1, ps+1, ps+leftLen);
+        curr.right = construct(in, pre, tmp+1, ie, ps+leftLen+1, pe);
+        return curr;
     }
     
     
-    public TreeNode buildTree(int[] p, int[] in) {
-        return create(p, in, 0, in.length-1, 0, p.length-1);
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        return construct(inorder, preorder, 0, inorder.length-1, 0, preorder.length-1);
     }
 }
