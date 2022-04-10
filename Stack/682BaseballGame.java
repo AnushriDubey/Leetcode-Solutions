@@ -9,10 +9,7 @@ class Solution {
         Stack<Integer> stk = new Stack<>();
         int val = 0;
         for(int i=0;i<ops.length;i++) {
-            if(ops[i].equals("C")) {
-                int a = stk.pop();
-                val -= a;
-            }
+            if(ops[i].equals("C")) val -= stk.pop();
             else if(ops[i].equals("D")) {
                 stk.push(stk.peek()*2);
                 val += stk.peek();
@@ -34,6 +31,9 @@ class Solution {
         //     res += stk.pop();
         // }
         // return res;
+        return val;
+    }
+}
         return val;
     }
 }
