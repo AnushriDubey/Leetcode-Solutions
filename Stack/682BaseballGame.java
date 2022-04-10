@@ -3,7 +3,6 @@
 
 https://leetcode.com/problems/baseball-game/
 
-
 class Solution {
     public int calPoints(String[] ops) {
         Stack<Integer> stk = new Stack<>();
@@ -31,9 +30,6 @@ class Solution {
         //     res += stk.pop();
         // }
         // return res;
-        return val;
-    }
-}
         return val;
     }
 }
